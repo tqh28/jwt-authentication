@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
@@ -73,7 +75,7 @@ public class AccountController {
 	}
 
 	@PutMapping("/password")
-	public ResponseEntity<MessageDTO> changePassword(@RequestBody ChangePasswordDTO body, Locale locale) {
+	public ResponseEntity<MessageDTO> changePassword(@RequestBody @Valid ChangePasswordDTO body, Locale locale) {
 		User user = userService.findByUsername(body.getUsername());
 		MessageDTO response = new MessageDTO();
 		if (passwordEncoder.matches(body.getCurrentPassword(), user.getPassword())) {

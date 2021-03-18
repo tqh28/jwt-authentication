@@ -5,7 +5,7 @@ create database authentication;
 use authentication;
 
 create table user (
-	id int not null auto_increment,
+    id int not null auto_increment,
     username varchar(50) unique not null,
     password text not null,
     email varchar(100) unique,
